@@ -1,0 +1,1 @@
+The goal of this project is to prototype the automated creation of a complete set of artifacts—a user story ticket, a report checking consistency with the OS+ API, and an end-to-end test—using a Python program that is as simple as possible.
