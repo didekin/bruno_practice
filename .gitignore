@@ -11,3 +11,6 @@ wheels/
 
 # IDE
 .idea/
+
+# exercises
+src/book_exercises/

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Gap Analysis"
+  short_description: "Analyze gaps between current and desired states"
+  default_prompt: "Use $gap-analysis-skill to analyze the gaps between a current state and a desired state."

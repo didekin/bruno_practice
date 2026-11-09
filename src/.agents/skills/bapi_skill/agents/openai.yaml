@@ -1,0 +1,4 @@
+interface:
+  display_name: "BAPI Skill"
+  short_description: "Custom workflow for BAPI tasks"
+  default_prompt: "Use $bapi-skill to help with a BAPI task."
