@@ -12,6 +12,9 @@ wheels/
 # IDE
 .idea/
 
+# secrets in an .env file.
+.env
+
 # exercises
 src/workout_book_exercises/
 src/quickbook_exercises
