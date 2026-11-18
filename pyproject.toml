@@ -1,5 +1,5 @@
 [project]
-name = "bruno-keycloak"
+name = "userstory-tests"
 version = "0.1.0"
 description = "Add your description here"
 readme = "README.md"
@@ -7,8 +7,27 @@ requires-python = ">=3.14"
 dependencies = []
 
 [project.scripts]
-bruno-keycloak = "bruno_keycloak:main"
+userstory-tests = "userstory_tests:main"
 
 [build-system]
 requires = ["uv_build>=0.12.3,<0.13.0"]
 build-backend = "uv_build"
+
+[dependency-groups]
+dev = [
+    "pre-commit>=4.7.0",
+    "pytest>=9.2.0",
+    "ruff>=0.17.5",
+    "ty>=0.0.106",
+]
+
+[tool.ruff]
+line-length = 80
+
+[tool.ruff.lint]
+extend-select = ["I"]  # Check import ordering
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+

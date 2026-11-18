@@ -13,4 +13,5 @@ wheels/
 .idea/
 
 # exercises
-src/book_exercises/
+src/workout_book_exercises/
+src/quickbook_exercises
