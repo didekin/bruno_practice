@@ -4,7 +4,10 @@ version = "0.1.0"
 description = "Add your description here"
 readme = "README.md"
 requires-python = ">=3.14"
-dependencies = []
+dependencies = [
+    "fastapi[standard]>=0.165.0",
+    "mcp>=2,<3",
+]
 
 [project.scripts]
 userstory-tests = "userstory_tests:main"
