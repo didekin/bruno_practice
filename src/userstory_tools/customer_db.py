@@ -32,13 +32,15 @@ def insert_customer(name: str, surname: str, email: str) -> int:
 
 def update_customer(
     customer_id: int,
-    name: str,
-    surname: str,
-    email: str,
+    name: str | None = None,
+    surname: str | None = None,
+    email: str | None = None,
 ) -> bool:
-    """Update a customer. Return True if the customer exists."""
-    database_uri = f"{DATABASE_PATH.as_uri()}?mode=rw"
+    """Update supplied fields. Return True if the customer exists."""
+    if name is None and surname is None and email is None:
+        raise ValueError("At least one field must be supplied")
 
+    database_uri = f"{DATABASE_PATH.as_uri()}?mode=rw"
     with (
         closing(sqlite3.connect(database_uri, uri=True)) as connection,
         connection,
@@ -46,14 +48,13 @@ def update_customer(
         cursor = connection.execute(
             """
             UPDATE CUSTOMER
-            SET name    = ?,
-                surname = ?,
-                email   = ?
+            SET name    = COALESCE(?, name),
+                surname = COALESCE(?, surname),
+                email   = COALESCE(?, email)
             WHERE customer_id = ?
             """,
             (name, surname, email, customer_id),
         )
-
     return cursor.rowcount > 0
 
 
@@ -73,7 +74,7 @@ def delete_customer(customer_id: int) -> bool:
     return cursor.rowcount > 0
 
 
-def list_customers() -> list[tuple[int, str | None, str | None, str | None]]:
+def list_customers() -> list[tuple[int, str, str, str]]:
     """Return all customers, ordered by customer ID."""
     database_uri = f"{DATABASE_PATH.as_uri()}?mode=ro"
 
@@ -87,3 +88,23 @@ def list_customers() -> list[tuple[int, str | None, str | None, str | None]]:
         ).fetchall()
 
     return customers
+
+
+def delete_all_customers() -> int:
+    """
+    Delete every customer and return the number of deleted rows.
+
+    WARNING: This permanently deletes ALL customer data from the configured
+    database. There is no environment check and no built-in undo.
+
+    Use this function only when the database contains disposable test data.
+    """
+    database_uri = f"{DATABASE_PATH.as_uri()}?mode=rw"
+
+    with (
+        closing(sqlite3.connect(database_uri, uri=True)) as connection,
+        connection,
+    ):
+        cursor = connection.execute("DELETE FROM CUSTOMER")
+
+    return cursor.rowcount

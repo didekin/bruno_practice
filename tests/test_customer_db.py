@@ -1,4 +1,4 @@
-from userstory_tests import customer_db
+from userstory_tools import customer_db
 
 TEST_CUSTOMER = ("Ada", "Lovelace", "ada@example.com")
 

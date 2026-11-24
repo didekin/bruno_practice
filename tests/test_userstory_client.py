@@ -51,9 +51,13 @@ def test_server_connection() -> None:
             # Test assertion
             assert tool_names == {
                 "list_customers",
+                "list_customers_via_api",
                 "insert_customer",
+                "insert_customer_via_api",
                 "update_customer",
+                "update_customer_via_api",
                 "delete_customer",
+                "delete_customer_via_api",
             }
 
             result = await session.call_tool("list_customers", {})

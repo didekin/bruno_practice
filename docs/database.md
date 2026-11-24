@@ -9,7 +9,7 @@ is required.
 From the project root, run:
 
 ```bash
-uv run python src/userstory_tests/create_db.py
+uv run python src/userstory_tools/create_db.py
 ```
 
 The script reads the SQL definition in `sql/customer.sql` and creates the
@@ -22,7 +22,7 @@ Running the script again does not modify an existing table or delete its rows.
 
 ## Database access
 
-The functions in `src/userstory_tests/customer_db.py` provide access to the
+The functions in `src/userstory_tools` provide access to the
 customer data. The MCP server uses these functions to respond to requests
 from Codex.
 
