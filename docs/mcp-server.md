@@ -4,16 +4,9 @@ The MCP server gives Codex access to customer operations. It provides two
 routes to the local database: direct database tools and tools that call the
 customer API over HTTP.
 
-```text
-Codex, acting as the MCP client
-    │ MCP over stdio                                        osplus_local.db
-    │                                                       ↑
-userstory_server.py                                         │
-    ├── Database tools ────────────────────────────────────→customer_db.py
-    │   Prepare or inspect database state                   │
-    └── API tools → HTTP → Uvicorn → FastAPI ──────────────→customer_api.py
-        Test the route a future frontend could use
-```
+![Local deployment of the customer prototype](images/userstory-deployment-diagram-preview.png)
+
+[View the larger diagram](images/userstory-deployment-diagram.png).
 
 The server is defined in `src/mcp_integration/userstory_server.py`. Codex
 acts as the MCP client: it discovers the available tools and can request
@@ -36,9 +29,7 @@ could use, while working with the same database.
 
 ## Deployment diagram
 
-![Local deployment of the customer prototype](images/userstory-deployment-diagram-preview.png)
 
-[View the larger diagram](images/userstory-deployment-diagram.png).
 
 ## Connect the server to Codex
 
